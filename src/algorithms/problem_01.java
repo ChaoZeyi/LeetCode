@@ -17,14 +17,8 @@ return [0, 1].
  */
 public class problem_01
 {
-    public static void main(String[] args)
-    {
-        int[] nums;
-        nums = new int[]{2,7,11,15};
-        int[] res = twoSum(nums,9);
-        System.out.println(res[0] + "," + res[1]);
-    }
-    public static int[] twoSum(int[] nums, int target) {
+
+    public int[] twoSum(int[] nums, int target) {
         int[] res = new int[2];
         HashMap<Integer, Integer> num = new HashMap<Integer, Integer>();
 

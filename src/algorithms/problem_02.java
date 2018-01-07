@@ -20,28 +20,8 @@ class ListNode {
       }
 }
 public class problem_02 {
-    public static void main(String[] args)
-    {
-        ListNode l1 = new ListNode(9);
-        ListNode l2 = new ListNode(1);
-        l2.next = new ListNode(9);
-        l2.next.next = new ListNode(9);
-        l2.next.next.next = new ListNode(9);
-        l2.next.next.next.next = new ListNode(9);
-        l2.next.next.next.next.next = new ListNode(9);
-        l2.next.next.next.next.next.next = new ListNode(9);
-        l2.next.next.next.next.next.next.next = new ListNode(9);
-        l2.next.next.next.next.next.next.next.next = new ListNode(9);
-        l2.next.next.next.next.next.next.next.next.next = new ListNode(9);
-        ListNode res = addTwoNumbers(l1,l2);
 
-        while(res != null)
-        {
-            System.out.println(res.val);
-            res = res.next;
-        }
-    }
-    public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         String str1 = "";
         String str2 = "";
         String res = "";
