@@ -31,6 +31,12 @@ package algorithms;
  2. 1 step + 2 steps
  3. 2 steps + 1 step
  */
+
+/**
+ * 对于任意一步i，存在两种情况，
+ * 从i－1步到i步走的是一个台阶，
+ * 从i－1步到i步走的是两个个台阶，
+ */
 public class problem_70 {
 
     public static int climbStairs(int n) {
@@ -41,11 +47,9 @@ public class problem_70 {
         if(n == 2)
             return 2;
 
-        //从后往前走
-
-        //第一步先走one step
+        //前一步走的是one step
         int one_step = 2;
-        //第一步先走two step
+        //前一步走的是two step
         int two_step = 1;
 
         int count = 0;
