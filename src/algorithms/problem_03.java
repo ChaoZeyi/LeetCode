@@ -1,6 +1,7 @@
 package algorithms;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author ChaoZeyi
@@ -12,39 +13,40 @@ Given "abcabcbb", the answer is "abc", which the length is 3.
 
 Given "bbbbb", the answer is "b", with the length of 1.
 
-Given "pwwkew", the answer is "wke", with the length of 3. Note that the answer must be a substring, "pwke" is a subsequence and not a substring.
+Given "pwwkew", the answer is "wke", with the length of 3.
+Note that the answer must be a substring, "pwke" is a subsequence and not a substring.
+ */
+
+/**
+ * 设置两个指针，一头一尾，头固定，尾依次向后移动，判断是否存在重复字符，如果存在重复字符，则移动头指针的位置
  */
 public class problem_03 {
     public static void main(String[] args)
     {
         //只需要返回长度
-        int res = lengthOfLongestSubstring("pwwkew");
+        int res = lengthOfLongestSubstring("tmmzuxt");
         System.out.println(res);
     }
     public static int lengthOfLongestSubstring(String s) {
-        char[] strs = s.toCharArray();
-        int max_num = 0;
-        for(int i = 0; i < strs.length; i++)
-        {
-            HashMap hashMap = new HashMap();
-            int num = 0;
-            for(int j = i; j < strs.length; j++)
-            {
+        int head = 0;
+        int tail = 0;
+        int max = 0;
 
-//                if(hashMap.isEmpty())
-//                    hashMap.put(strs[j],j);
-               // System.out.println(hashMap.containsKey(strs[j]));
-                if(hashMap.containsKey(strs[j]))
-                    break;
-                else
-                {
-                    hashMap.put(strs[j],j);
-                    num++;
-                }
+        Map<Character, Integer> existedNum = new HashMap<>();
+        char[] chars = s.toCharArray();
+        for(; tail < s.length();tail++){
+            if(existedNum.containsKey(chars[tail])){
+                head = Math.max(head, existedNum.get(chars[tail])+1);
+
             }
-            max_num = Math.max(max_num,num);
+            existedNum.put(chars[tail], tail);
+            max = Math.max(max, tail-head+1);
+
+
         }
-        return  max_num;
+
+
+        return  max;
 
     }
 }
