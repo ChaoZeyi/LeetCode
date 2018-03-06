@@ -3,7 +3,8 @@ package algorithms;
 /**
  * @author ChaoZeyi
  * Add Two Numbers
- *You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order
+ *You are given two non-empty linked lists representing two non-negative integers.
+ * The digits are stored in reverse order
  * and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.
 
 You may assume the two numbers do not contain any leading zero, except the number 0 itself.
@@ -11,6 +12,11 @@ You may assume the two numbers do not contain any leading zero, except the numbe
 Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
 Output: 7 -> 0 -> 8
  hints:由于列表可以非常长，所以不能将数据转成数值来进行计算！！！！！！
+ */
+
+/**
+ * 之前的做法是把所有的链表数据存储在一个字符串中，然后切分成整型数组，再进行求和
+ * 其实可以利用倒序的特点，直接对链表节点求和，逻辑更简单！
  */
 class ListNode {
       int val;
@@ -22,59 +28,32 @@ class ListNode {
 public class problem_02 {
 
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        String str1 = "";
-        String str2 = "";
-        String res = "";
-        while(l1 != null)
-        {
-            str1 += l1.val;
-            l1 = l1.next;
-        }
-        while(l2 != null)
-        {
-            str2 += l2.val;
-            l2 = l2.next;
-        }
-
-       int[] char1 = new int[str1.length()];
-        for(int i = 0; i < str1.length(); i++)
-        {
-            char1[i] = Integer.parseInt(str1.substring(i, i+1));
-        }
-        int[] char2 = new int[str2.length()];
-        for(int i = 0; i < str2.length(); i++)
-        {
-            char2[i] = Integer.parseInt(str2.substring(i, i+1));
-        }
-       //可能两个序列长度不一样
-       int bonus = 0;    //是否存在进位
-        int temp1 = 0;
-        int temp2 = 0;
-       for(int i = 0; i < Math.max(char1.length, char2.length); i++)
-       {
-           if(i >= char1.length)
-               temp1 = 0;
-           else
-               temp1 = char1[i];
-
-           if(i >= char2.length)
-               temp2 = 0;
-           else
-               temp2 = char2[i];
-           int temp = temp1 + temp2 + bonus;
-           res += (temp%10);
-           bonus = temp/10;
-       }
-       if(bonus != 0)
-           res += bonus;
-
         ListNode result = new ListNode(0);
         ListNode a = result;
-        for(int i = 0; i < res.length(); i++)
-        {
-            ListNode newNode = new ListNode(Integer.parseInt(res.substring(i, i+1)));
-            a.next = newNode;
-            a = newNode;
+        int add = 0;
+        while(l1 != null || l2 != null) {
+            int val1, val2;
+            if (l1 == null)
+                val1 = 0;
+            else
+            {val1 = l1.val;
+                l1 = l1.next;}
+            if (l2 == null)
+                val2 = 0;
+            else {
+                val2 = l2.val;
+                l2 = l2.next;
+            }
+
+            int temp = val1 + val2 + add;
+            add = temp/10;
+            ListNode tempList = new ListNode(temp%10);
+            a.next = tempList;
+            a = tempList;
+        }
+        if(add == 1){
+            ListNode tempList = new ListNode(1);
+            a.next = tempList;
         }
         return result.next;
 
