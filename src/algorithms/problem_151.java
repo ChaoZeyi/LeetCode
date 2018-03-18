@@ -3,6 +3,14 @@ package algorithms;
 /**
  * Created by chaozeyi on 18/3/18.
  */
+
+/**
+ * Given an input string, reverse the string word by word.
+
+ For example,
+ Given s = "the sky is blue",
+ return "blue is sky the".
+ */
 public class problem_151 {
     public String reverseWords(String s) {
         if(s.length() == 0)
